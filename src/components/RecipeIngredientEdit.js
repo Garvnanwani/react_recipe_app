@@ -1,6 +1,10 @@
 import React from "react"
 
-const RecipeIngredientEdit = ({ ingredient, handleIngredientChange }) => {
+const RecipeIngredientEdit = ({
+  ingredient,
+  handleIngredientChange,
+  handleIngredientDelete,
+}) => {
   function handleChange(changes) {
     handleIngredientChange(ingredient.id, { ...ingredient, ...changes })
   }
@@ -9,7 +13,7 @@ const RecipeIngredientEdit = ({ ingredient, handleIngredientChange }) => {
     <>
       <input
         value={ingredient.name}
-        onInput={(e) => handleChange({ name: e.target.value })}
+        onChange={(e) => handleChange({ name: e.target.value })}
         className="recipe-edit__input"
         type="text"
       />
@@ -17,9 +21,15 @@ const RecipeIngredientEdit = ({ ingredient, handleIngredientChange }) => {
         value={ingredient.amount}
         className="recipe-edit__input"
         type="text"
-        onInput={(e) => handleChange({ amount: e.target.value })}
+        onChange={(e) => handleChange({ amount: e.target.value })}
       />
-      <button className="btn btn--danger"> &times;</button>
+      <button
+        className="btn btn--danger"
+        onClick={() => handleIngredientDelete(ingredient.id)}
+      >
+        {" "}
+        &times;
+      </button>
     </>
   )
 }
