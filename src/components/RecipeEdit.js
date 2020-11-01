@@ -1,7 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
+import { RecipeContext } from './App'
 import RecipeIngredientEdit from "./RecipeIngredientEdit"
 
-const RecipeEdt = ({ recipe }) => {
+const RecipeEdit = ({ recipe }) => {
+
+    const { handleRecipeChange } = useContext(RecipeContext)
+
+    function handleChange(changes) {
+        handleRecipeChange(recipe.id, { ...recipe, ...changes })
+    }
+
     return (
         <div className="recipe-edit">
             <div className="recipe-edit__remove-button-container">
@@ -17,6 +25,7 @@ const RecipeEdt = ({ recipe }) => {
                     name="name"
                     id="name"
                     value={recipe.name}
+                    onInput={e => handleChange({ name: e.target.value })}
                 />
                 <label className="recipe-edit__label" htmlFor="cookTime">
                     Cook Time
@@ -47,7 +56,8 @@ const RecipeEdt = ({ recipe }) => {
             <br />
             <label className="recipe-edit__label">Ingredients</label>
             <div className="recipe-edit__ingredient-grid">
-                <div>Name</div>
+                <div>Na
+                    me</div>
                 <div>Amount</div>
                 <div></div>
                 {recipe.ingredients.map(ingredient => {
@@ -61,4 +71,4 @@ const RecipeEdt = ({ recipe }) => {
     )
 }
 
-export default RecipeEdt
+export default RecipeEdit
