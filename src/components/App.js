@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/App.css';
 import RecipeList from './RecipeList';
 
 function App() {
