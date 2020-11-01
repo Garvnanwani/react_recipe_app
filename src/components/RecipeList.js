@@ -14,7 +14,7 @@ const RecipeList = ({ recipes }) => {
                 })}
             </div>
             <div className="recipe-list__add-recipe-btn-container">
-                <button className="btn btn--primary" onCLick={handleRecipeAdd}>Add Recipe</button>
+                <button className="btn btn--primary" onClick={handleRecipeAdd}>Add Recipe</button>
             </div>
         </div>
     )
