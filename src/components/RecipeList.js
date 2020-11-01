@@ -1,16 +1,19 @@
 import React from "react"
 import Recipe from "./Recipe"
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = (props) => {
+
+    const { recipes, handleRecipeAdd, handleRecipeDelete } = props
+
     return (
         <div className="recipe-list">
             <div>
                 {recipes.map((recipe) => {
-                    return <Recipe key={recipe.id} {...recipe} />
+                    return <Recipe handleRecipeDelete={handleRecipeDelete} key={recipe.id} {...recipe} />
                 })}
             </div>
             <div className="recipe-list__add-recipe-btn-container">
-                <button className="btn btn--primary">Add Recipe</button>
+                <button className="btn btn--primary" onCLick={handleRecipeAdd}>Add Recipe</button>
             </div>
         </div>
     )
