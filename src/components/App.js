@@ -10,7 +10,9 @@ const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 
 function App() {
 
+  const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes);
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
   useEffect(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
@@ -24,7 +26,12 @@ function App() {
 
   const recipeContextValue = {
     handleRecipeAdd,
-    handleRecipeDelete
+    handleRecipeDelete,
+    handleRecipeSelect
+  }
+
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id)
   }
 
   function handleRecipeAdd() {
@@ -49,7 +56,7 @@ function App() {
   return (
     <RecipeContext.Provider value={recipeContextValue}>
       <RecipeList recipes={recipes} />
-      <RecipeEdit />
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   );
 }
@@ -61,7 +68,7 @@ const sampleRecipes = [
     name: 'Plain Chicken',
     servings: 3,
     cookTime: '1:45',
-    instructions: '1.Put Salt on Chicken \n 2.Put Chicken in oven \n 3.Eat Chicken',
+    instructions: '1.Put Salt on Chicken \n2.Put Chicken in oven \n3.Eat Chicken',
     ingredients: [
       {
         id: 1,
@@ -80,7 +87,7 @@ const sampleRecipes = [
     name: 'Plain Pork',
     servings: 5,
     cookTime: '0:45',
-    instructions: '1.Put parprika on Pork \n 2.Put Pork in oven \n 3.Eat Pork',
+    instructions: '1.Put parprika on Pork \n2.Put Pork in oven \n3.Eat Pork',
     ingredients: [
       {
         id: 1,
