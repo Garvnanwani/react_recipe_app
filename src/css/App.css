@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import 'recipe-list.css';
 @import 'recipe.css';
+@import 'recipe-edit.css';
 @import 'ingredient-list.css';
 @import 'buttons.css';
 
@@ -10,6 +11,7 @@
 *::after {
     font-family: 'Roboto',
         sans-serif;
+    box-sizing: border-box;
 }
 
 html {
